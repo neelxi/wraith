@@ -36,21 +36,14 @@
       padding-top: constant(safe-area-inset-top);
       padding-top: env(safe-area-inset-top, 0px);
     }
-    /*
-      Mobile: one frosted layer on #nav itself so backdrop-filter covers the
-      padded region (Dynamic Island). A separate strip fails when env() or
-      stacking behaves differently in WKWebView.
-    */
+    /* Mobile: solid bar through safe area + nav row (glass unreliable in WKWebView) */
     @media (max-width: 767px) {
       #nav {
-        -webkit-backdrop-filter: blur(32px) saturate(180%);
-        backdrop-filter: blur(32px) saturate(180%);
-        background: rgba(5, 8, 18, 0.55);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-        isolation: isolate;
+        background: #070a12;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
       #nav.nav-mobile-scrolled {
-        background: rgba(5, 8, 18, 0.68);
+        background: #05060d;
       }
     }
     /* Hero needs to clear the taller nav on notched devices */
