@@ -34,6 +34,20 @@
     #nav {
       padding-top: env(safe-area-inset-top, 0px);
     }
+    /* Always-glassy safe area fill — height is 0 on non-notched devices */
+    #nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: env(safe-area-inset-top, 0px);
+      background: rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      pointer-events: none;
+      z-index: -1;
+    }
     /* Hero needs to clear the taller nav on notched devices */
     .hero-offset {
       padding-top: calc(4rem + env(safe-area-inset-top, 0px));
