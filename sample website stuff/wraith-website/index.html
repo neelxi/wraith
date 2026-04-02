@@ -34,19 +34,20 @@
     #nav {
       padding-top: env(safe-area-inset-top, 0px);
     }
-    /* Always-glassy safe area fill — height is 0 on non-notched devices */
-    #nav::before {
-      content: '';
-      position: absolute;
+    /* Safe area fill strip — always visible, matches nav scroll state */
+    #safe-area-fill {
+      position: fixed;
       top: 0;
       left: 0;
       right: 0;
       height: env(safe-area-inset-top, 0px);
-      background: rgba(0, 0, 0, 0.4);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      background: rgba(0, 2, 14, 0.92);
+      z-index: 51;
       pointer-events: none;
-      z-index: -1;
+      transition: background 0.3s ease;
+    }
+    #safe-area-fill.scrolled {
+      background: rgba(0, 2, 14, 0.72);
     }
     /* Hero needs to clear the taller nav on notched devices */
     .hero-offset {
@@ -260,6 +261,9 @@
 </head>
 <body class="text-white font-body min-h-screen">
 
+  <!-- Safe area fill for iOS notch / Dynamic Island -->
+  <div id="safe-area-fill"></div>
+
   <!-- ========== NAV ========== -->
   <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
     <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
@@ -446,6 +450,7 @@
       var nav = document.getElementById('nav');
       var btn = document.getElementById('mobile-menu-btn');
       var menu = document.getElementById('mobile-menu');
+      var safeArea = document.getElementById('safe-area-fill');
       var scrolled = false;
 
       window.addEventListener('scroll', function() {
@@ -456,6 +461,7 @@
           nav.classList.toggle('backdrop-blur-2xl', scrolled);
           nav.classList.toggle('border-b', scrolled);
           nav.classList.toggle('border-white/[0.06]', scrolled);
+          safeArea.classList.toggle('scrolled', scrolled);
         }
       });
 
