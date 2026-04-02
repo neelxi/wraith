@@ -30,14 +30,9 @@
 
     html { scroll-behavior: smooth; }
 
-    /* Extend nav behind notch / Dynamic Island.
-       Always-on background ensures the area behind the Dynamic Island
-       is filled — transparent nav causes the mismatch with system UI. */
+    /* Push nav content below Dynamic Island / notch */
     #nav {
       padding-top: env(safe-area-inset-top, 0px);
-      background: rgba(0, 0, 8, 0.72);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
     }
     /* Hero needs to clear the taller nav on notched devices */
     .hero-offset {
@@ -443,11 +438,10 @@
         var now = window.scrollY > 20;
         if (now !== scrolled) {
           scrolled = now;
+          nav.classList.toggle('bg-black/40', scrolled);
+          nav.classList.toggle('backdrop-blur-2xl', scrolled);
           nav.classList.toggle('border-b', scrolled);
           nav.classList.toggle('border-white/[0.06]', scrolled);
-          nav.style.background = scrolled
-            ? 'rgba(0, 0, 8, 0.88)'
-            : 'rgba(0, 0, 8, 0.72)';
         }
       });
 
