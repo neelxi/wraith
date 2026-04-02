@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Not the Right Fit — Yet | Hestia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#FDF2F2', 500: '#A30000', 600: '#8A0000', 700: '#700000' },
+            warm: { 50: '#FFFEFC', 100: '#F0EBE4', 200: '#E8E2DB' },
+            ink: { DEFAULT: '#07070A', light: '#504E56' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+    .form-input:focus { outline: none; box-shadow: 0 0 0 2px #A30000; }
+  </style>
+</head>
+<!-- NO CONVERSION PIXEL ON THIS PAGE -->
+<body class="bg-warm-50 text-ink font-sans">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-warm-50/90 backdrop-blur-md border-b border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+        </div>
+        <span class="text-lg font-bold tracking-tight">Hestia</span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="max-w-2xl mx-auto px-6 md:px-10 pt-5 md:pt-6 pb-16">
+    <div class="text-center mb-10">
+      <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-4">Thanks for Your Interest</h1>
+      <p class="text-lg text-ink-light leading-relaxed mb-3 max-w-xl mx-auto">
+        Based on your answers, Hestia isn't the right fit for your brokerage right now. We're specifically built for independent brokerages running 15–80 agents who are hitting the scaling ceiling where operations outpace systems.
+      </p>
+      <p class="text-ink-light leading-relaxed max-w-xl mx-auto">
+        That doesn't mean we won't be the right fit down the road. Brokerages grow — and when your operation hits the point where disconnected tools and manual processes are costing you top producers and admin hours, we'll be here.
+      </p>
+    </div>
+
+    <!-- Free resource block — not in use for now
+    <div class="border-t border-warm-200 pt-10 mb-10">
+      <h2 class="text-2xl font-bold mb-3">In the Meantime: Free Resource</h2>
+      <p class="text-ink-light leading-relaxed mb-6">
+        Get the <strong class="text-ink">Brokerage Operational Benchmarks Report</strong> — industry data on tool spend, admin-to-agent ratios, agent retention rates, and the real cost of system fragmentation.
+      </p>
+      <form class="flex flex-col sm:flex-row gap-3" action="/blueprint">
+        <input type="email" name="email" placeholder="Your email" required class="form-input flex-1 px-4 py-3.5 rounded-lg bg-white border border-warm-200 text-ink placeholder-ink-light/50 text-base">
+        <button type="submit" class="px-6 py-3.5 bg-ink hover:bg-ink/80 text-white font-semibold text-sm rounded-lg transition-colors shrink-0">Send Me the Report</button>
+      </form>
+    </div>
+    -->
+
+    <div class="border-t border-warm-200 pt-10 mb-10">
+      <h2 class="text-2xl font-bold mb-3">Join the Waitlist</h2>
+      <p class="text-ink-light leading-relaxed mb-6">
+        We're expanding to serve additional brokerage sizes and models. Join the waitlist and we'll reach out when we have something built for where you are today.
+      </p>
+      <form id="waitlist-form" class="flex gap-3" action="https://portal.hestiaops.com/api/leads" method="POST">
+        <input type="hidden" name="form_type" value="waitlist">
+        <input type="hidden" name="_next" value="https://hestiaops.com/waitlist-thankyou">
+        <input type="email" name="waitlist_email" placeholder="Your email" required class="form-input flex-1 px-4 py-3.5 rounded-lg bg-white border border-warm-200 text-ink placeholder-ink-light/50 text-base">
+        <button type="submit" id="waitlist-submit" class="px-6 py-3.5 bg-brand-500/10 text-brand-500 font-semibold text-sm rounded-lg hover:bg-brand-500/20 transition-colors border border-brand-500/30 shrink-0">Join</button>
+      </form>
+    </div>
+
+    <script>
+      (function() {
+        const form = document.getElementById('waitlist-form');
+        const btn = document.getElementById('waitlist-submit');
+        const API_URL = form.action || 'https://portal.hestiaops.com/api/leads';
+        const THANKYOU_URL = 'https://hestiaops.com/waitlist-thankyou';
+
+        form.addEventListener('submit', async function(e) {
+          e.preventDefault();
+          const originalText = btn.textContent;
+          btn.disabled = true;
+          btn.textContent = 'Joining...';
+          try {
+            const formData = new FormData(form);
+            formData.set('_next', THANKYOU_URL);
+            const res = await fetch(API_URL, {
+              method: 'POST',
+              body: new URLSearchParams(formData),
+              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            });
+            const data = await res.json().catch(() => ({}));
+            if (res.ok && data.ok) {
+              window.location.href = data.redirect || THANKYOU_URL;
+              return;
+            }
+            throw new Error(data.error || 'Something went wrong');
+          } catch (err) {
+            btn.disabled = false;
+            btn.textContent = originalText;
+            alert(err.message || 'Failed to submit. Please try again.');
+          }
+        });
+      })();
+    </script>
+
+    <a href="/" class="inline-flex items-center gap-1.5 text-sm text-ink-light hover:text-brand-500 transition-colors">
+      <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/></svg>
+      Back to Hestia
+    </a>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-7 h-7 bg-brand-500 rounded-md flex items-center justify-center">
+              <svg class="w-4 h-4 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+            </div>
+            <span class="font-bold">Hestia</span>
+          </div>
+          <p class="text-sm text-ink-light max-w-xs">Unified operations infrastructure for independent real estate brokerages.</p>
+        </div>
+        <div class="flex gap-16">
+          <div>
+            <p class="font-semibold text-sm mb-3">Company</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="/" class="hover:text-brand-500 transition-colors">Home</a>
+              <a href="/apply" class="hover:text-brand-500 transition-colors">Apply</a>
+              <a href="/blueprint" class="hover:text-brand-500 transition-colors">Blueprint</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm mb-3">Legal</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-warm-200 pt-6">
+        <p class="text-sm text-ink-light/60">&copy; 2026 Hestia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>You're on the List | Hestia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#FDF2F2', 500: '#A30000', 600: '#8A0000', 700: '#700000' },
+            warm: { 50: '#FFFEFC', 100: '#F0EBE4', 200: '#E8E2DB' },
+            ink: { DEFAULT: '#07070A', light: '#504E56' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="bg-warm-50 text-ink font-sans">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-warm-50/90 backdrop-blur-md border-b border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+        </div>
+        <span class="text-lg font-bold tracking-tight">Hestia</span>
+      </a>
+      <a href="/" class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-lg transition-colors">Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- CONFIRMATION -->
+  <section class="max-w-2xl mx-auto px-6 md:px-10 pt-12 md:pt-16 pb-20 text-center">
+    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-500/10 border-2 border-brand-500/30 mb-6">
+      <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">You're on the List</h1>
+    <p class="text-lg text-ink-light max-w-xl mx-auto mb-10 leading-relaxed">
+      We'll reach out when we expand to serve brokerages like yours. In the meantime, check out the Blueprint — it's free and covers the same system we build for our clients.
+    </p>
+    <a href="/blueprint" class="inline-flex items-center gap-2 px-8 py-4 bg-brand-500 hover:bg-brand-600 text-white font-bold text-base rounded-lg transition-colors shadow-lg shadow-brand-500/20">
+      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      Read the Blueprint
+    </a>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-7 h-7 bg-brand-500 rounded-md flex items-center justify-center">
+              <svg class="w-4 h-4 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+            </div>
+            <span class="font-bold">Hestia</span>
+          </div>
+          <p class="text-sm text-ink-light max-w-xs">Unified operations infrastructure for independent real estate brokerages.</p>
+        </div>
+        <div class="flex gap-16">
+          <div>
+            <p class="font-semibold text-sm mb-3">Company</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="/" class="hover:text-brand-500 transition-colors">Home</a>
+              <a href="/apply" class="hover:text-brand-500 transition-colors">Apply</a>
+              <a href="/blueprint" class="hover:text-brand-500 transition-colors">Blueprint</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm mb-3">Legal</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-warm-200 pt-6">
+        <p class="text-sm text-ink-light/60">&copy; 2026 Hestia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

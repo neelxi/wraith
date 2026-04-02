@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Apply to Work With Us | Hestia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#FDF2F2', 500: '#A30000', 600: '#8A0000', 700: '#700000' },
+            warm: { 50: '#FFFEFC', 100: '#F0EBE4', 200: '#E8E2DB' },
+            ink: { DEFAULT: '#07070A', light: '#504E56' },
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+    .form-input:focus { outline: none; box-shadow: 0 0 0 2px #A30000; border-color: #A30000; }
+    .form-input { border-color: #E8E2DB; }
+    .form-input:focus { border-color: #A30000; }
+    select.form-input {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23504E56'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 0.75rem center;
+      background-size: 1.25rem;
+      padding-right: 2.5rem;
+    }
+    .progress-bar { transition: width 0.3s ease; }
+    .question-step { display: none; }
+    .question-step.active { display: block; }
+  </style>
+</head>
+<body class="bg-warm-50 text-ink font-sans min-h-screen flex flex-col">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-warm-50/95 backdrop-blur-md border-b border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+        </div>
+        <span class="text-lg font-bold tracking-tight">Hestia</span>
+      </a>
+      <a href="/" class="px-5 py-2.5 bg-brand-500 text-white text-sm font-semibold rounded-lg hover:bg-brand-600 transition-colors">Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- FORM -->
+  <main class="flex-1 flex flex-col items-center justify-center px-6 py-12 md:py-16 pb-16">
+    <!-- Form submits to portal API at portal.hestiaops.com (stores in Supabase, redirects to thank you). For local dev, change action to your portal URL. -->
+    <form id="apply-form" action="https://portal.hestiaops.com/api/apply" method="POST" class="w-full max-w-xl">
+      <!-- Progress -->
+      <div class="flex justify-between items-baseline mb-2">
+        <span class="text-sm text-ink-light" id="progress-text">Question 1 of 10</span>
+        <span class="text-sm text-ink-light" id="progress-pct">10% complete</span>
+      </div>
+      <div class="h-1 bg-warm-200 rounded-full overflow-hidden mb-12">
+        <div id="progress-bar" class="progress-bar h-full bg-brand-500 rounded-full" style="width: 10%"></div>
+      </div>
+
+      <!-- Question 1: Name -->
+      <div class="question-step active" data-step="1">
+        <p class="text-sm text-ink-light mb-2">Question 1</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">First, what's your name?</h2>
+        <input type="text" name="name" placeholder="Your name" required autofocus
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink placeholder-ink-light/50 text-base mb-4">
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 2: Email -->
+      <div class="question-step" data-step="2">
+        <p class="text-sm text-ink-light mb-2">Question 2</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">What's your business email?</h2>
+        <input type="email" name="email" placeholder="you@brokerage.com" required
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink placeholder-ink-light/50 text-base mb-4">
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 3: Phone -->
+      <div class="question-step" data-step="3">
+        <p class="text-sm text-ink-light mb-2">Question 3</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">What's the best number to reach you?</h2>
+        <input type="tel" name="phone" placeholder="(555) 123-4567"
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink placeholder-ink-light/50 text-base mb-4">
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 4: Brokerage -->
+      <div class="question-step" data-step="4">
+        <p class="text-sm text-ink-light mb-2">Question 4</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">What's your brokerage name?</h2>
+        <input type="text" name="brokerage" placeholder="Your brokerage" required
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink placeholder-ink-light/50 text-base mb-4">
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 5: Agent count -->
+      <div class="question-step" data-step="5">
+        <p class="text-sm text-ink-light mb-2">Question 5</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">How many licensed agents do you have?</h2>
+        <select name="agents" required
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink text-base appearance-none cursor-pointer mb-4">
+          <option value="" disabled selected class="text-ink-light/50">Select your range</option>
+          <option value="less-than-15">Less than 15</option>
+          <option value="15-30">15–30</option>
+          <option value="31-50">31–50</option>
+          <option value="51-80">51–80</option>
+          <option value="80+">80+</option>
+        </select>
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 6: Budget -->
+      <div class="question-step" data-step="6">
+        <p class="text-sm text-ink-light mb-2">Question 6</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">Our rate is $2,000 setup and $3,000/mo. Does that work for your budget?</h2>
+        <select name="budget" required
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink text-base appearance-none cursor-pointer mb-4">
+          <option value="" disabled selected class="text-ink-light/50">Select one</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 7: Challenge -->
+      <div class="question-step" data-step="7">
+        <p class="text-sm text-ink-light mb-2">Question 7</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">What's your biggest operational challenge right now?</h2>
+        <select name="challenge" required
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink text-base appearance-none cursor-pointer mb-4">
+          <option value="" disabled selected class="text-ink-light/50">Select one</option>
+          <option value="tool-sprawl">Too many disconnected tools</option>
+          <option value="retention">Retaining top-producing agents</option>
+          <option value="bottleneck">I'm the bottleneck for everything</option>
+          <option value="pipeline">No pipeline visibility or single source of truth</option>
+          <option value="scaling">Admin overhead doubles when we grow</option>
+          <option value="other">Something else</option>
+        </select>
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 8: CRM -->
+      <div class="question-step" data-step="8">
+        <p class="text-sm text-ink-light mb-2">Question 8</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">What CRM do you use today?</h2>
+        <input type="text" name="crm" placeholder="e.g. kvCORE, Follow Up Boss, LionDesk"
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink placeholder-ink-light/50 text-base mb-4">
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 9: Notes -->
+      <div class="question-step" data-step="9">
+        <p class="text-sm text-ink-light mb-2">Question 9</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-8">Anything else we should know?</h2>
+        <textarea name="notes" placeholder="Optional — tell us what's on your mind" rows="3"
+          class="form-input w-full px-4 py-4 rounded-lg bg-white border text-ink placeholder-ink-light/50 text-base resize-none mb-4"></textarea>
+        <p class="text-sm text-ink-light mb-6">Press <kbd class="font-medium text-ink">Enter</kbd> ↵ to continue</p>
+      </div>
+
+      <!-- Question 10: Calendly + Finish -->
+      <div class="question-step" data-step="10">
+        <p class="text-sm text-ink-light mb-2">Question 10</p>
+        <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-4">Ready to schedule your consultation?</h2>
+        <p class="text-ink-light mb-6">Pick a time below. Once you've booked, you can finish your application.</p>
+        <div id="calendly-embed" class="mb-8 rounded-xl overflow-hidden border border-warm-200 w-full" style="min-width:320px;min-height:810px;height:72vh;"></div>
+        <button type="submit" id="finish-btn" disabled
+          class="w-full px-6 py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold text-base rounded-lg transition-colors shadow-lg shadow-brand-500/20 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-brand-500">
+          Finish Application
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </button>
+      </div>
+
+      <!-- Continue button (shown for steps 1-8) -->
+      <div id="continue-wrapper" class="mt-2">
+        <button type="button" id="continue-btn"
+          class="w-full px-6 py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold text-base rounded-lg transition-colors flex items-center justify-center gap-2">
+          Continue
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        </button>
+      </div>
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-7 h-7 bg-brand-500 rounded-md flex items-center justify-center">
+              <svg class="w-4 h-4 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+            </div>
+            <span class="font-bold">Hestia</span>
+          </div>
+          <p class="text-sm text-ink-light max-w-xs">Unified operations infrastructure for independent real estate brokerages.</p>
+        </div>
+        <div class="flex gap-16">
+          <div>
+            <p class="font-semibold text-sm mb-3">Company</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="/" class="hover:text-brand-500 transition-colors">Home</a>
+              <a href="/apply" class="hover:text-brand-500 transition-colors">Apply</a>
+              <a href="/blueprint" class="hover:text-brand-500 transition-colors">Blueprint</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm mb-3">Legal</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-warm-200 pt-6">
+        <p class="text-sm text-ink-light/60">&copy; 2026 Hestia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      // Replace with your Calendly scheduling URL (e.g. https://calendly.com/your-username/consultation)
+      const CALENDLY_BASE_URL = 'https://calendly.com/neel-hestiaops/30min';
+
+      const form = document.getElementById('apply-form');
+      const steps = form.querySelectorAll('.question-step');
+      const progressBar = document.getElementById('progress-bar');
+      const progressText = document.getElementById('progress-text');
+      const progressPct = document.getElementById('progress-pct');
+      const continueBtn = document.getElementById('continue-btn');
+      const continueWrapper = document.getElementById('continue-wrapper');
+      const finishBtn = document.getElementById('finish-btn');
+      const calendlyContainer = document.getElementById('calendly-embed');
+      const totalSteps = steps.length;
+
+      let currentStep = 1;
+      let calendlyLoaded = false;
+
+      function buildCalendlyUrl() {
+        const url = new URL(CALENDLY_BASE_URL);
+        const name = form.querySelector('[name="name"]')?.value;
+        const email = form.querySelector('[name="email"]')?.value;
+        if (name) url.searchParams.set('name', name);
+        if (email) url.searchParams.set('email', email);
+        // Required for postMessage (event_scheduled) to work
+        url.searchParams.set('embed_domain', window.location.host || 'hestiaops.com');
+        url.searchParams.set('embed_type', 'Inline');
+        return url.toString();
+      }
+
+      function loadCalendly() {
+        if (calendlyLoaded) return;
+        calendlyLoaded = true;
+        calendlyContainer.innerHTML = '<div class="calendly-inline-widget" data-url="' + buildCalendlyUrl() + '" style="min-width:320px;width:100%;min-height:810px;height:100%;"></div>';
+        var s = document.createElement('script');
+        s.src = 'https://assets.calendly.com/assets/external/widget.js';
+        s.async = true;
+        document.head.appendChild(s);
+      }
+
+      function isCalendlyScheduledEvent(e) {
+        if (!e.data || typeof e.data !== 'object') return false;
+        const ev = e.data.event;
+        return ev && typeof ev === 'string' && ev === 'calendly.event_scheduled';
+      }
+
+      window.addEventListener('message', function(e) {
+        if (isCalendlyScheduledEvent(e)) {
+          finishBtn.disabled = false;
+          finishBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        }
+      });
+
+      function updateProgress() {
+        const pct = Math.round((currentStep / totalSteps) * 100);
+        progressBar.style.width = pct + '%';
+        progressText.textContent = 'Question ' + currentStep + ' of ' + totalSteps;
+        progressPct.textContent = pct + '% complete';
+      }
+
+      function showStep(step) {
+        currentStep = step;
+        steps.forEach((s, i) => {
+          s.classList.toggle('active', parseInt(s.dataset.step) === step);
+        });
+        updateProgress();
+        continueWrapper.style.display = step === totalSteps ? 'none' : 'block';
+
+        if (step === totalSteps) {
+          loadCalendly();
+        }
+
+        const activeStep = form.querySelector('.question-step.active');
+        const input = activeStep.querySelector('input, select, textarea');
+        if (input) {
+          input.focus();
+          input.value = input.value; // trigger validation state
+        }
+      }
+
+      function validateCurrentStep() {
+        const activeStep = form.querySelector('.question-step.active');
+        const input = activeStep.querySelector('input[required], select[required]');
+        if (!input) return true;
+        if (input.type === 'email' && !input.value) return false;
+        if (input.validity && !input.validity.valid && input.value === '') return false;
+        if (input.hasAttribute('required') && !input.value.trim()) return false;
+        return true;
+      }
+
+      function redirectToNotFit() {
+        window.location.href = '/sorry';
+      }
+
+      function goNext() {
+        if (!validateCurrentStep()) {
+          const activeStep = form.querySelector('.question-step.active');
+          const input = activeStep.querySelector('input[required], select[required]');
+          if (input) {
+            input.reportValidity();
+            input.focus();
+          }
+          return;
+        }
+        // Redirect to not-a-fit if agents < 15
+        const agentsSelect = form.querySelector('[name="agents"]');
+        if (agentsSelect && agentsSelect.value === 'less-than-15') {
+          redirectToNotFit();
+          return;
+        }
+        // Redirect to not-a-fit if budget doesn't work
+        const budgetSelect = form.querySelector('[name="budget"]');
+        if (budgetSelect && budgetSelect.value === 'no') {
+          redirectToNotFit();
+          return;
+        }
+        if (currentStep < totalSteps) {
+          showStep(currentStep + 1);
+        } else {
+          form.requestSubmit();
+        }
+      }
+
+      continueBtn.addEventListener('click', goNext);
+
+      form.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' && currentStep < totalSteps) {
+          const activeStep = form.querySelector('.question-step.active');
+          const textarea = activeStep.querySelector('textarea');
+          if (textarea && !e.shiftKey) {
+            e.preventDefault();
+            goNext();
+          } else if (!textarea) {
+            e.preventDefault();
+            goNext();
+          }
+        }
+      });
+
+      steps.forEach((step, i) => {
+        const input = step.querySelector('input, select, textarea');
+        if (input) {
+          input.addEventListener('input', function() {
+            if (input.type === 'text' || input.type === 'email' || input.type === 'tel') {
+              input.setCustomValidity('');
+            }
+          });
+          input.addEventListener('change', function() {
+            input.setCustomValidity('');
+          });
+        }
+      });
+
+      const THANKYOU_URL = 'https://hestiaops.com/thankyou';
+      const API_URL = form.action || 'https://portal.hestiaops.com/api/apply';
+
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (currentStep !== totalSteps) return;
+        const originalBtnHtml = finishBtn.innerHTML;
+        finishBtn.disabled = true;
+        finishBtn.innerHTML = 'Submitting...';
+        try {
+          const formData = new FormData(form);
+          formData.set('_next', THANKYOU_URL);
+          const res = await fetch(API_URL, {
+            method: 'POST',
+            body: new URLSearchParams(formData),
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          });
+          const data = await res.json().catch(() => ({}));
+          if (res.ok && data.ok) {
+            window.location.href = data.redirect || THANKYOU_URL;
+            return;
+          }
+          throw new Error(data.error || 'Something went wrong');
+        } catch (err) {
+          finishBtn.disabled = false;
+          finishBtn.innerHTML = originalBtnHtml;
+          alert(err.message || 'Failed to submit. Please try again.');
+        }
+      });
+
+      showStep(1);
+    })();
+  </script>
+
+</body>
+</html>

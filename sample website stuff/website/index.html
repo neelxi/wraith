@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>Hestia | Unified Operations for Independent Brokerages</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Branding: Inter only. No serif fonts. Headlines differentiate through weight and size. -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: { 50: '#FDF2F2', 500: '#A30000', 600: '#8A0000', 700: '#700000' },
+            warm: { 50: '#FFFEFC', 100: '#F0EBE4', 200: '#E8E2DB' },
+            ink: { DEFAULT: '#07070A', light: '#504E56' },
+            gold: '#D58936',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+    .faq-toggle:checked + .faq-label + .faq-content { max-height: 600px; opacity: 1; padding-top: 1rem !important; padding-bottom: 1.25rem !important; }
+    .faq-toggle:checked + .faq-label .faq-chevron { transform: rotate(180deg); color: #A30000; }
+    .faq-content { max-height: 0; opacity: 0; overflow: hidden; transition: all 0.3s ease; padding-top: 0 !important; padding-bottom: 0 !important; }
+    .faq-label {
+      display: flex;
+      align-items: center !important;
+      justify-content: space-between;
+      padding: 0.875rem 1.5rem;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body class="bg-warm-50 text-ink font-sans">
+
+  <!-- ========== NAV ========== -->
+  <nav class="sticky top-0 z-50 bg-warm-50/90 backdrop-blur-md border-b border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+        </div>
+        <span class="text-lg font-bold tracking-tight">Hestia</span>
+      </a>
+      <a href="/apply" class="px-5 py-2.5 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-lg transition-colors">Apply Now</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="max-w-6xl mx-auto px-6 md:px-10 pt-8 md:pt-10 pb-8 text-center">
+    <p class="text-sm font-semibold text-brand-500 uppercase tracking-[0.2em] mb-3">For Mid-Size Real Estate Brokerages · 15–80 Agents</p>
+
+    <h1 class="font-sans text-4xl md:text-[3.25rem] md:leading-[1.15] font-bold tracking-tight max-w-4xl mx-auto mb-3">
+      Stop Losing Hours to a Tech Stack Your Agents Don't Use
+    </h1>
+
+    <p class="text-base md:text-lg text-ink-light max-w-2xl mx-auto mb-5 leading-relaxed">
+      We connect your CRM, transactions, and commissions into one system with full pipeline visibility, automated SOPs, and one brokerage-wide portal.
+
+    </p>
+
+    <!-- Trust badges -->
+    <div class="flex items-center justify-center gap-6 mb-5 text-sm text-ink-light">
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span>Connects Your Existing Tools</span>
+      </div>
+      <span class="text-warm-200">|</span>
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span>Live in 30 Days</span>
+      </div>
+      <span class="text-warm-200">|</span>
+      <div class="flex items-center gap-1.5">
+        <svg class="w-4 h-4 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        <span>You Own Your Data</span>
+      </div>
+    </div>
+
+    <!-- VSSL -->
+    <div class="max-w-3xl mx-auto relative w-full aspect-video bg-ink rounded-2xl flex items-center justify-center overflow-hidden shadow-2xl shadow-ink/10 mb-5">
+      <div class="flex flex-col items-center gap-2 z-10">
+        <div class="w-16 h-16 rounded-full bg-white/10 border-2 border-white/30 flex items-center justify-center backdrop-blur-sm">
+          <svg class="w-7 h-7 text-white ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+        <span class="text-sm text-white/60">Watch how it works</span>
+      </div>
+    </div>
+
+    <!-- Dual CTAs -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="/apply" class="px-8 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-brand-500/20">
+        Apply to Work With Us
+      </a>
+      <a href="/blueprint" class="px-8 py-3.5 bg-white border border-warm-200 hover:border-ink/20 text-ink font-semibold rounded-lg transition-colors">
+        Read the Blueprint
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== BLUEPRINT SECTION (two-column) ========== -->
+  <section class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+        <div>
+          <p class="text-sm font-semibold text-brand-500 uppercase tracking-[0.2em] mb-4">Free Guide</p>
+          <h2 class="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-5">The Complete Blueprint. Free.</h2>
+          <p class="text-lg text-ink-light leading-relaxed mb-8">Learn the exact system we use to unify brokerage operations. No pitch. No gating.</p>
+          <ul class="flex flex-col gap-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+              <span class="text-ink-light">How to connect your existing tools into one unified data layer.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+              <span class="text-ink-light">How to structure the system so agents actually use it.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-brand-500 mt-0.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4"/></svg>
+              <span class="text-ink-light">The 30-day rollout roadmap from system audit to go-live.</span>
+            </li>
+          </ul>
+          <a href="/blueprint" class="inline-flex items-center gap-2 px-6 py-3.5 bg-brand-500 hover:bg-brand-600 text-white font-semibold rounded-lg transition-colors shadow-lg shadow-brand-500/20">
+            Access Free
+          </a>
+        </div>
+        <div class="bg-ink rounded-2xl p-8 text-white shadow-2xl shadow-ink/10">
+          <div class="flex items-center gap-2.5 mb-6">
+            <div class="w-7 h-7 bg-brand-500 rounded-md flex items-center justify-center">
+              <svg class="w-4 h-4 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+            </div>
+            <span class="font-semibold">Hestia</span>
+          </div>
+          <p class="text-sm text-white/50 uppercase tracking-widest mb-3">Free Guide</p>
+          <h3 class="font-sans text-xl font-bold mb-2">The Brokerage AI Operations Blueprint</h3>
+          <p class="text-sm text-white/60 leading-relaxed">Build a unified data system, automate your SOPs, and deploy AI across your brokerage in 30 days.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS (commented out for simplified landing) ==========
+  <section class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+      <div class="text-center mb-16">
+        <h2 class="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-4">Here's How It Works</h2>
+        <p class="text-lg text-ink-light max-w-2xl mx-auto">Five steps. 30 days. One unified system.</p>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-8 md:gap-6">
+        <div class="text-center md:text-left">
+          <div class="w-12 h-12 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-lg font-bold text-brand-500 mx-auto md:mx-0 mb-4">1</div>
+          <h3 class="font-semibold mb-2">Apply &amp; Consult</h3>
+          <p class="text-sm text-ink-light leading-relaxed">Answer a few questions. If it's a fit, we walk through your specific workflows live — not a slide deck.</p>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="w-12 h-12 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-lg font-bold text-brand-500 mx-auto md:mx-0 mb-4">2</div>
+          <h3 class="font-semibold mb-2">System Audit</h3>
+          <p class="text-sm text-ink-light leading-relaxed">We map every tool, data flow, and process, showing exactly where disconnected systems cost you.
+          </p>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="w-12 h-12 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-lg font-bold text-brand-500 mx-auto md:mx-0 mb-4">3</div>
+          <h3 class="font-semibold mb-2">Build &amp; Configure</h3>
+          <p class="text-sm text-ink-light leading-relaxed">We build your unified system, migrate your data, set up SOPs, and configure the AI operations assistant.</p>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="w-12 h-12 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-lg font-bold text-brand-500 mx-auto md:mx-0 mb-4">4</div>
+          <h3 class="font-semibold mb-2">Train Your Team</h3>
+          <p class="text-sm text-ink-light leading-relaxed">One training session, one system. Adoption is built into the transaction flow, not bolted on after.</p>
+        </div>
+        <div class="text-center md:text-left">
+          <div class="w-12 h-12 rounded-full bg-brand-500 flex items-center justify-center text-lg font-bold text-white mx-auto md:mx-0 mb-4">5</div>
+          <h3 class="font-semibold mb-2">Go Live</h3>
+          <p class="text-sm text-ink-light leading-relaxed">Pipeline visibility, automated SOPs, and one source of truth. From day 30 forward, you own everything.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- ========== COST TABLE (commented out for simplified landing) ==========
+  <section class="border-t border-warm-200 bg-warm-100/50">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+      <h2 class="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-4">What Fragmented Operations Cost You</h2>
+      <p class="text-lg text-ink-light mb-10 max-w-2xl">Conservative estimates for a 40-agent independent brokerage.</p>
+
+      <div class="rounded-2xl border border-warm-200 overflow-hidden bg-white mb-8">
+        <table class="w-full text-sm md:text-base">
+          <thead>
+            <tr class="bg-warm-100">
+              <th class="text-left py-4 px-6 text-ink-light font-medium">Cost Category</th>
+              <th class="text-right py-4 px-6 text-ink-light font-medium">Annual Impact</th>
+              <th class="text-left py-4 px-6 text-ink-light font-medium hidden md:table-cell">Source</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-warm-200">
+            <tr><td class="py-4 px-6">Admin reconciliation time</td><td class="py-4 px-6 text-right text-brand-500 font-semibold">$34,000</td><td class="py-4 px-6 text-ink-light text-sm hidden md:table-cell">Buildout 2025</td></tr>
+            <tr><td class="py-4 px-6">Broker-owner time on admin</td><td class="py-4 px-6 text-right text-brand-500 font-semibold">$75,000</td><td class="py-4 px-6 text-ink-light text-sm hidden md:table-cell">ICP benchmarks</td></tr>
+            <tr><td class="py-4 px-6">Redundant tool spend (4–7 overlapping subscriptions)</td><td class="py-4 px-6 text-right text-brand-500 font-semibold">$30,000</td><td class="py-4 px-6 text-ink-light text-sm hidden md:table-cell">WAV Group 2025</td></tr>
+            <tr><td class="py-4 px-6">Wasted adoption spend (tools agents never use)</td><td class="py-4 px-6 text-right text-brand-500 font-semibold">$12,000</td><td class="py-4 px-6 text-ink-light text-sm hidden md:table-cell">WAV Group 2025</td></tr>
+            <tr><td class="py-4 px-6">Lost recruiting investment (failed new agents)</td><td class="py-4 px-6 text-right text-brand-500 font-semibold">$26,000</td><td class="py-4 px-6 text-ink-light text-sm hidden md:table-cell">NAR 2025</td></tr>
+            <tr class="bg-warm-100/50"><td class="py-4 px-6 font-bold">Conservative total</td><td class="py-4 px-6 text-right text-brand-500 font-bold text-lg">$177,000+/yr</td><td class="py-4 px-6 hidden md:table-cell"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="text-ink-light leading-relaxed">And that's before you calculate the cost of losing a single top producer, which can cascade into $750K+ in lost production volume when three more follow them out the door.</p>
+    </div>
+  </section>
+  -->
+
+  <!-- ========== COMPARISON (commented out for simplified landing) ==========
+  <section class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-20 md:py-28">
+      <h2 class="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-4">Your Brokerage Today vs. With Hestia</h2>
+      <p class="text-lg text-ink-light mb-10 max-w-2xl">Side-by-side: what changes when everything is connected.</p>
+
+      <div class="rounded-2xl border border-warm-200 overflow-hidden bg-white overflow-x-auto">
+        <table class="w-full text-sm md:text-base min-w-[600px]">
+          <thead>
+            <tr class="bg-warm-100">
+              <th class="text-left py-4 px-6 text-ink-light font-medium w-1/4">Scenario</th>
+              <th class="text-left py-4 px-6 text-ink-light font-medium">Current State</th>
+              <th class="text-left py-4 px-6 text-brand-500 font-semibold">With Hestia</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-warm-200">
+            <tr><td class="py-4 px-6 font-medium">Pipeline visibility</td><td class="py-4 px-6 text-ink-light">Check 3 systems, call the agent, wait</td><td class="py-4 px-6">Real-time dashboard, one source of truth</td></tr>
+            <tr><td class="py-4 px-6 font-medium">Commission reconciliation</td><td class="py-4 px-6 text-ink-light">Manual spreadsheet, 2–3 hours per closing</td><td class="py-4 px-6">Automated on transaction close</td></tr>
+            <tr><td class="py-4 px-6 font-medium">Agent onboarding</td><td class="py-4 px-6 text-ink-light">5 guides, 3 systems, 2 weeks</td><td class="py-4 px-6">One account, one portal, one day</td></tr>
+            <tr><td class="py-4 px-6 font-medium">"What's my cap status?"</td><td class="py-4 px-6 text-ink-light">"Let me check and get back to you"</td><td class="py-4 px-6">Agent opens portal, sees it instantly</td></tr>
+            <tr><td class="py-4 px-6 font-medium">Retention pitch</td><td class="py-4 px-6 text-ink-light">"We have great culture"</td><td class="py-4 px-6">"Let me show you your production dashboard"</td></tr>
+            <tr><td class="py-4 px-6 font-medium">Broker-owner's evening</td><td class="py-4 px-6 text-ink-light">Reconciling commissions at 9 PM</td><td class="py-4 px-6">Reviewing growth metrics, planning recruiting</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  -->
+
+  <!-- ========== FAQ ========== -->
+  <section class="border-t border-warm-200 bg-warm-100/50">
+    <div class="max-w-3xl mx-auto px-6 md:px-10 py-20 md:py-28">
+      <h2 class="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-10 text-center">Questions Broker-Owners Ask</h2>
+
+      <div class="flex flex-col gap-4">
+        <div class="bg-white rounded-xl border border-warm-200 overflow-hidden">
+          <input type="checkbox" id="faq1" class="faq-toggle hidden">
+          <label for="faq1" class="faq-label">
+            <span class="font-medium pr-4">"We've tried platforms before and our agents just won't use them."</span>
+            <svg class="faq-chevron w-5 h-5 text-ink-light shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </label>
+          <div class="faq-content px-6 pb-5">
+            <p class="text-ink-light leading-relaxed">That's an architecture problem, not a technology problem. Every platform you've tried was an add-on — agents had to do extra work to use it, so they didn't. Hestia IS the workflow. Agents interact with it to manage transactions, see commissions, and track production. They use it because it's the only tool they need to get paid.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-200 overflow-hidden">
+          <input type="checkbox" id="faq2" class="faq-toggle hidden">
+          <label for="faq2" class="faq-label">
+            <span class="font-medium pr-4">"I don't have time to migrate our data and retrain 40 agents."</span>
+            <svg class="faq-chevron w-5 h-5 text-ink-light shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </label>
+          <div class="faq-content px-6 pb-5">
+            <p class="text-ink-light leading-relaxed">You don't have to. We handle the full migration from your existing CRM, transaction management, and commission tools. Your agents get one training session on one tool. Most brokerages are fully operational within 30 days.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-200 overflow-hidden">
+          <input type="checkbox" id="faq3" class="faq-toggle hidden">
+          <label for="faq3" class="faq-label">
+            <span class="font-medium pr-4">"How is this different from kvCORE / Follow Up Boss / BrokerMint?"</span>
+            <svg class="faq-chevron w-5 h-5 text-ink-light shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </label>
+          <div class="faq-content px-6 pb-5">
+            <p class="text-ink-light leading-relaxed">Those are point solutions — each does one job and doesn't talk to the others. Right now, you're the integration layer holding them together. Hestia connects all of them into one unified system. You keep your existing tools. We build the layer underneath that makes them work together.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-200 overflow-hidden">
+          <input type="checkbox" id="faq4" class="faq-toggle hidden">
+          <label for="faq4" class="faq-label">
+            <span class="font-medium pr-4">"Our current setup works well enough — switching feels risky."</span>
+            <svg class="faq-chevron w-5 h-5 text-ink-light shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </label>
+          <div class="faq-content px-6 pb-5">
+            <p class="text-ink-light leading-relaxed">"Works" has a hidden cost: $177K+/year in admin overhead, redundant tools, and wasted adoption spend. Agent migration hit 6.8% in 2025. Every month without unified operations is a month your best agents are getting recruited by Compass and eXp.</p>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl border border-warm-200 overflow-hidden">
+          <input type="checkbox" id="faq5" class="faq-toggle hidden">
+          <label for="faq5" class="faq-label">
+            <span class="font-medium pr-4">"AI sounds interesting, but I don't trust it with client-facing stuff."</span>
+            <svg class="faq-chevron w-5 h-5 text-ink-light shrink-0 transition-transform duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </label>
+          <div class="faq-content px-6 pb-5">
+            <p class="text-ink-light leading-relaxed">Neither do we. Hestia AI handles internal operations only: pipeline visibility, SOP automation, commission reconciliation, and reporting. It does not interact with clients. Every AI action is logged and auditable. Your agents own every client relationship.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIAL (uncomment when we have a real one) ==========
+  <section class="border-t border-warm-200">
+    <div class="max-w-4xl mx-auto px-6 md:px-10 py-20 md:py-28 text-center">
+      <div class="text-5xl text-brand-500 mb-8 font-sans">&ldquo;</div>
+      <blockquote class="font-sans text-2xl md:text-3xl leading-snug font-bold tracking-tight mb-8 max-w-3xl mx-auto">
+        "I was paying for kvCORE, SkySlope, BrokerMint, and three spreadsheets. My agents used exactly one of them. The blueprint alone showed me why — and what to do about it."
+      </blockquote>
+      <p class="font-semibold text-lg">James R.</p>
+      <p class="text-ink-light">Broker-Owner, 38 agents — Raleigh, NC</p>
+    </div>
+  </section>
+  -->
+
+  <!-- ========== FINAL CTA ========== -->
+  <section id="apply" class="border-t border-warm-200 bg-warm-100/50">
+    <div class="max-w-3xl mx-auto px-6 md:px-10 py-20 md:py-28 text-center">
+      <h2 class="font-sans text-3xl md:text-4xl font-bold tracking-tight mb-5">Ready to see what your brokerage looks like when everything is connected?</h2>
+      <p class="text-lg text-ink-light mb-10 max-w-xl mx-auto">Takes 2 minutes. If it's a fit, we walk through your specific workflows live.</p>
+      <a href="/apply" class="inline-flex items-center gap-2 px-10 py-4 bg-brand-500 hover:bg-brand-600 text-white font-semibold text-lg rounded-lg transition-colors shadow-lg shadow-brand-500/20">
+        Apply Now
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-7 h-7 bg-brand-500 rounded-md flex items-center justify-center">
+              <svg class="w-4 h-4 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+            </div>
+            <span class="font-bold">Hestia</span>
+          </div>
+          <p class="text-sm text-ink-light max-w-xs">Unified operations infrastructure for independent real estate brokerages.</p>
+        </div>
+        <div class="flex gap-16">
+          <div>
+            <p class="font-semibold text-sm mb-3">Company</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="/" class="hover:text-brand-500 transition-colors">Home</a>
+              <a href="/apply" class="hover:text-brand-500 transition-colors">Apply</a>
+              <a href="/blueprint" class="hover:text-brand-500 transition-colors">Blueprint</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm mb-3">Legal</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-warm-200 pt-6">
+        <p class="text-sm text-ink-light/60">&copy; 2026 Hestia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

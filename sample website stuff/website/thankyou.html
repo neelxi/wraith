@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <title>You're Confirmed | Hestia</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+          colors: {
+            brand: { 50: '#FDF2F2', 500: '#A30000', 600: '#8A0000', 700: '#700000' },
+            warm: { 50: '#FFFEFC', 100: '#F0EBE4', 200: '#E8E2DB' },
+            ink: { DEFAULT: '#07070A', light: '#504E56' },
+            gold: '#D58936',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+  </style>
+</head>
+<body class="bg-warm-50 text-ink font-sans">
+
+  <!-- NAV -->
+  <nav class="sticky top-0 z-50 bg-warm-50/90 backdrop-blur-md border-b border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 bg-brand-500 rounded-lg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+        </div>
+        <span class="text-lg font-bold tracking-tight">Hestia</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- CONFIRMATION -->
+  <section class="max-w-6xl mx-auto px-6 md:px-10 pt-5 md:pt-6 pb-8 text-center">
+    <div class="inline-flex items-center justify-center w-14 h-14 rounded-full bg-brand-500/10 border-2 border-brand-500/30 mb-4">
+      <svg class="w-7 h-7 text-brand-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    </div>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">Your Call Is Confirmed</h1>
+    <p class="text-lg text-ink-light max-w-xl mx-auto">Check your email for the calendar invite. Here's how to prepare so we make the most of our time together.</p>
+  </section>
+
+  <!-- STEPS -->
+  <section class="max-w-4xl mx-auto px-6 md:px-10 pb-20">
+    <div class="grid md:grid-cols-2 gap-8 mb-12">
+      <!-- Step 1 -->
+      <div class="bg-white rounded-2xl p-8 border border-warm-200">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-sm font-bold text-brand-500 shrink-0">1</div>
+          <h2 class="text-lg font-semibold">Accept the Calendar Invite</h2>
+        </div>
+        <p class="text-ink-light leading-relaxed mb-4">If you use Google Calendar and see "Unknown sender" — click <strong class="text-ink">"I know the sender"</strong> so the event stays on your calendar.</p>
+        <div class="bg-warm-50 rounded-xl p-4 border border-warm-200">
+          <div class="flex items-center gap-2 text-xs text-ink-light mb-2">
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+            Google Calendar
+          </div>
+          <p class="text-sm font-medium mb-1">Hestia — Brokerage Consultation</p>
+          <p class="text-xs text-ink-light">45 min · via Google Meet</p>
+          <div class="flex gap-2 mt-3">
+            <span class="px-3 py-1.5 bg-brand-500/10 text-brand-500 text-xs font-semibold rounded-md">Yes</span>
+            <span class="px-3 py-1.5 bg-warm-100 text-ink-light text-xs rounded-md">No</span>
+            <span class="px-3 py-1.5 bg-warm-100 text-ink-light text-xs rounded-md">Maybe</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="bg-white rounded-2xl p-8 border border-warm-200">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-sm font-bold text-brand-500 shrink-0">2</div>
+          <h2 class="text-lg font-semibold">Watch This 7-Minute Video</h2>
+        </div>
+        <p class="text-ink-light leading-relaxed mb-4">What to expect on your call, how the system audit works, and why this is different from every platform demo you've sat through.</p>
+        <div class="relative w-full aspect-video bg-ink rounded-xl flex items-center justify-center overflow-hidden">
+          <div class="flex flex-col items-center gap-2 z-10">
+            <div class="w-14 h-14 rounded-full bg-white/10 border-2 border-white/30 flex items-center justify-center">
+              <svg class="w-6 h-6 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            </div>
+            <span class="text-xs text-white/60">7 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Videos -->
+    <p class="text-sm font-semibold text-ink-light uppercase tracking-[0.2em] mb-6 text-center">Common Questions Before Your Call</p>
+    <div class="grid md:grid-cols-3 gap-6 mb-16">
+      <div class="bg-white rounded-2xl p-6 border border-warm-200 text-center">
+        <h3 class="font-semibold text-sm mb-4">"Agents won't adopt new platforms"</h3>
+        <div class="relative w-full aspect-video bg-warm-100 rounded-xl border border-warm-200 flex items-center justify-center">
+          <div class="w-12 h-12 rounded-full bg-warm-200 flex items-center justify-center"><svg class="w-5 h-5 text-ink-light ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <p class="text-xs text-ink-light mt-3">2 min</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-warm-200 text-center">
+        <h3 class="font-semibold text-sm mb-4">"I don't have time to migrate and retrain"</h3>
+        <div class="relative w-full aspect-video bg-warm-100 rounded-xl border border-warm-200 flex items-center justify-center">
+          <div class="w-12 h-12 rounded-full bg-warm-200 flex items-center justify-center"><svg class="w-5 h-5 text-ink-light ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <p class="text-xs text-ink-light mt-3">3 min</p>
+      </div>
+      <div class="bg-white rounded-2xl p-6 border border-warm-200 text-center">
+        <h3 class="font-semibold text-sm mb-4">"How is this different from kvCORE?"</h3>
+        <div class="relative w-full aspect-video bg-warm-100 rounded-xl border border-warm-200 flex items-center justify-center">
+          <div class="w-12 h-12 rounded-full bg-warm-200 flex items-center justify-center"><svg class="w-5 h-5 text-ink-light ml-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+        <p class="text-xs text-ink-light mt-3">2 min</p>
+      </div>
+    </div>
+
+    <!-- Data callouts -->
+    <div class="grid md:grid-cols-2 gap-6 mb-16">
+      <div class="bg-brand-50 border border-brand-500/20 rounded-2xl p-8">
+        <p class="text-ink leading-relaxed"><strong>70%+ of brokers</strong> use 4 or more technology providers. More than half offer 7+ tech products to agents. Agents only use tools required for payment.</p>
+        <p class="text-xs text-ink-light mt-3">Source: WAV Group 2025</p>
+      </div>
+      <div class="bg-brand-50 border border-brand-500/20 rounded-2xl p-8">
+        <p class="text-ink leading-relaxed">Agent turnover hit <strong>6.8% in 2025</strong>. The top 10% of agents who switch carry <strong>44.6% of all migrated production volume</strong>.</p>
+        <p class="text-xs text-ink-light mt-3">Source: Recruiting Insight / HousingWire 2025</p>
+      </div>
+    </div>
+
+    <!-- Blueprint link + text prompt -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-white rounded-2xl p-8 border border-warm-200">
+        <h3 class="text-lg font-semibold mb-2">While You Wait for Your Call</h3>
+        <p class="text-ink-light leading-relaxed mb-4">Read the Brokerage AI Operations Blueprint — the same system we'll discuss on your call.</p>
+        <a href="https://docs.google.com/document/d/1zUTLukLMXLS6dwvoT-cYYxDly3rEE4iiaWs_-e4D80Y/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-3 bg-brand-500/10 border border-brand-500/30 rounded-lg text-sm font-medium text-brand-500 hover:bg-brand-500/20 transition-colors">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          Read the Blueprint
+        </a>
+      </div>
+      <div class="bg-white rounded-2xl p-8 border border-warm-200">
+        <h3 class="text-lg font-semibold mb-2">Prefer to Chat Over Text?</h3>
+        <p class="text-ink-light leading-relaxed mb-4">If you'd rather start with a quick conversation instead of waiting for the call, reach out directly.</p>
+        <a href="#" class="inline-flex items-center gap-2 text-sm text-brand-500 font-medium">
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/></svg>
+          Text us
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-warm-200">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-7 h-7 bg-brand-500 rounded-md flex items-center justify-center">
+              <svg class="w-4 h-4 text-white rotate-180" viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8l3 18H5L8 3z"/></svg>
+            </div>
+            <span class="font-bold">Hestia</span>
+          </div>
+          <p class="text-sm text-ink-light max-w-xs">Unified operations infrastructure for independent real estate brokerages.</p>
+        </div>
+        <div class="flex gap-16">
+          <div>
+            <p class="font-semibold text-sm mb-3">Company</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="/" class="hover:text-brand-500 transition-colors">Home</a>
+              <a href="/apply" class="hover:text-brand-500 transition-colors">Apply</a>
+              <a href="/blueprint" class="hover:text-brand-500 transition-colors">Blueprint</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm mb-3">Legal</p>
+            <div class="flex flex-col gap-2 text-sm text-ink-light">
+              <a href="#" class="hover:text-brand-500 transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-brand-500 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-warm-200 pt-6">
+        <p class="text-sm text-ink-light/60">&copy; 2026 Hestia. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

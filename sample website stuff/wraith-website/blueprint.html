@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wraith | The AI Founder Content Playbook</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['IBM Plex Sans', 'system-ui', 'sans-serif'],
+            display: ['Outfit', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: { 400: '#5BA3FF', 500: '#3888F6', 600: '#2563EB' },
+            void: { DEFAULT: '#030308', card: '#0a0a12', raised: '#10101c' },
+            mist: { DEFAULT: '#e2e8f0', muted: '#94a3b8', faint: '#64748b' },
+            line: 'rgba(148, 163, 184, 0.12)',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { -webkit-font-smoothing: antialiased; }
+    .bg-void-deep {
+      background-color: #030308;
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(56, 136, 246, 0.08), transparent 50%),
+        linear-gradient(180deg, #08080f 0%, #030308 40%, #030308 100%);
+    }
+    .form-input:focus {
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(56, 136, 246, 0.35);
+      border-color: rgba(56, 136, 246, 0.5);
+    }
+    .form-input {
+      border-color: rgba(148, 163, 184, 0.2);
+      background: rgba(16, 16, 28, 0.6);
+      color: #e2e8f0;
+    }
+    .form-input::placeholder { color: rgba(148, 163, 184, 0.45); }
+    select.form-input { appearance: none; }
+  </style>
+</head>
+<body class="bg-void-deep text-mist font-sans">
+
+  <nav class="sticky top-0 z-50 border-b border-line bg-void/80 backdrop-blur-xl">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500/30 to-brand-600/10 border border-brand-500/40 flex items-center justify-center">
+          <span class="font-display text-sm font-bold text-brand-500 tracking-tighter">W</span>
+        </div>
+        <span class="text-lg font-display font-bold tracking-tight text-mist">Wraith</span>
+      </a>
+      <a href="index.html" class="px-5 py-2.5 bg-brand-500/15 hover:bg-brand-500/25 border border-brand-500/35 text-brand-400 text-sm font-semibold rounded-lg transition-colors">Back to Home</a>
+    </div>
+  </nav>
+
+  <!-- HERO (matches Hestia blueprint: eyebrow, H1, two supporting paragraphs) -->
+  <section class="max-w-5xl mx-auto px-6 md:px-10 pt-5 md:pt-6 pb-3 text-center">
+    <p class="text-sm font-semibold text-brand-500 uppercase tracking-[0.2em] mb-3 font-display">Free Playbook</p>
+    <h1 class="text-3xl md:text-[2.75rem] md:leading-[1.15] font-display font-extrabold tracking-tight mb-3 text-mist">The Content Distribution Playbook for Pre-Series A AI Companies</h1>
+    <p class="text-lg md:text-xl text-mist-muted max-w-2xl mx-auto mb-3 leading-relaxed">
+      The exact framework we use to take AI founders from invisible to everywhere. Platform strategy, posting cadence, content formats, and the compounding math behind consistent distribution.
+    </p>
+    <p class="text-base text-mist-faint max-w-xl mx-auto mb-3 leading-relaxed">
+      Built from real campaigns with AI tool companies. Takes 15 minutes to read. Free, no strings attached.
+    </p>
+  </section>
+
+  <!-- FORM STACK (same fields pattern as Hestia: name, email, company, selects, CTA) -->
+  <section class="max-w-2xl mx-auto px-6 md:px-10 pb-16">
+    <form id="blueprint-form" class="flex flex-col gap-3" action="#" method="POST">
+      <input type="hidden" name="form_type" value="blueprint_download">
+      <input type="text" name="name" placeholder="Full name" required class="form-input w-full px-4 py-3.5 rounded-lg border text-base">
+      <input type="email" name="email" placeholder="you@company.com" required class="form-input w-full px-4 py-3.5 rounded-lg border text-base">
+      <input type="text" name="company" placeholder="Company name" required class="form-input w-full px-4 py-3.5 rounded-lg border text-base">
+      <select name="segment" required class="form-input w-full px-4 py-3.5 rounded-lg border text-base cursor-pointer">
+        <option value="" disabled selected class="text-mist-faint/80">What stage is your company at?</option>
+        <option value="a">Pre-seed</option>
+        <option value="b">Seed</option>
+        <option value="c">Series A+</option>
+        <option value="d">Bootstrapped profitable</option>
+      </select>
+      <select name="challenge" required class="form-input w-full px-4 py-3.5 rounded-lg border text-base cursor-pointer">
+        <option value="" disabled selected class="text-mist-faint/80">Biggest content challenge right now?</option>
+        <option value="1">No time to create content consistently</option>
+        <option value="2">Growth has plateaued since launch</option>
+        <option value="3">Competitors are more visible than us</option>
+        <option value="4">Investors asking about distribution strategy</option>
+        <option value="other">Something else</option>
+      </select>
+      <button type="submit" id="blueprint-submit" class="w-full mt-1 px-6 py-4 bg-brand-500 hover:bg-brand-600 text-void font-display font-bold text-base rounded-lg transition-colors shadow-lg shadow-brand-500/20 border border-brand-400/30">
+        Get the Free Playbook
+      </button>
+    </form>
+    <p class="text-xs text-mist-faint text-center mt-3">No spam. We'll send the playbook and one follow-up. That's it.</p>
+  </section>
+
+  <script>
+    (function() {
+      var form = document.getElementById('blueprint-form');
+      var btn = document.getElementById('blueprint-submit');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = 'Sending...';
+        setTimeout(function() {
+          /* Replace with API POST + server redirect when backend is wired (see Hestia blueprint.html). */
+          window.location.href = 'blueprint-thankyou.html';
+        }, 400);
+      });
+    })();
+  </script>
+
+  <footer class="border-t border-line">
+    <div class="max-w-6xl mx-auto px-6 md:px-10 py-12">
+      <div class="flex flex-col md:flex-row md:items-start md:justify-between gap-10 mb-10">
+        <div>
+          <div class="flex items-center gap-2.5 mb-3">
+            <div class="w-7 h-7 rounded-md bg-brand-500/20 border border-brand-500/35 flex items-center justify-center">
+              <span class="font-display text-xs font-bold text-brand-400">W</span>
+            </div>
+            <span class="font-display font-bold text-mist">Wraith</span>
+          </div>
+          <p class="text-sm text-mist-muted max-w-xs">Done-for-you founder-led content for AI tool companies.</p>
+        </div>
+        <div class="flex gap-16">
+          <div>
+            <p class="font-semibold text-sm mb-3 text-mist">Company</p>
+            <div class="flex flex-col gap-2 text-sm text-mist-muted">
+              <a href="index.html" class="hover:text-brand-400 transition-colors">Home</a>
+              <a href="apply.html" class="hover:text-brand-400 transition-colors">Apply</a>
+              <a href="blueprint.html" class="hover:text-brand-400 transition-colors">Content Playbook</a>
+            </div>
+          </div>
+          <div>
+            <p class="font-semibold text-sm mb-3 text-mist">Legal</p>
+            <div class="flex flex-col gap-2 text-sm text-mist-muted">
+              <a href="#" class="hover:text-brand-400 transition-colors">Privacy Policy</a>
+              <a href="#" class="hover:text-brand-400 transition-colors">Terms of Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="border-t border-line pt-6">
+        <p class="text-sm text-mist-faint/80">&copy; 2026 Wraith Digital. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

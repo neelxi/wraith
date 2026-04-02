@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wraith &mdash; Content for AI Founders</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://api.fontshare.com/v2/css?f[]=clash-display@400;500;600;700&f[]=satoshi@400;500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['Clash Display', 'system-ui', 'sans-serif'],
+            body: ['Satoshi', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            blue: '#2D7AFF',
+          },
+        }
+      }
+    }
+  </script>
+  <style>
+    :root {
+      --font-display: 'Clash Display', system-ui, sans-serif;
+      --font-body: 'Satoshi', system-ui, sans-serif;
+      --blue: #2D7AFF;
+    }
+
+    html { scroll-behavior: smooth; }
+    h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); }
+
+    body {
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: #000;
+      background-image:
+        radial-gradient(ellipse 50% 40% at 18% 12%, rgba(255,255,255,0.22), transparent 70%),
+        radial-gradient(ellipse 55% 45% at 38% 30%, rgba(45,122,255,0.25), transparent 65%),
+        radial-gradient(ellipse 45% 40% at 62% 45%, rgba(26,79,191,0.28), transparent 60%),
+        radial-gradient(ellipse 35% 30% at 50% 20%, rgba(45,122,255,0.10), transparent 80%),
+        linear-gradient(180deg, transparent 0%, transparent 50%, #000 75%);
+      background-size: 130% 130%;
+      background-attachment: fixed;
+      animation: gradientDrift 25s ease-in-out infinite alternate;
+    }
+
+    @keyframes gradientDrift {
+      0%   { background-position: 0% 0%; }
+      50%  { background-position: 30% 20%; }
+      100% { background-position: 60% 40%; }
+    }
+
+    .faq-toggle {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .faq-content {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .faq-toggle:checked + .faq-label + .faq-content {
+      max-height: 600px;
+      opacity: 1;
+      padding-bottom: 1.25rem;
+    }
+    .faq-chevron {
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+    }
+    .faq-toggle:checked + .faq-label .faq-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Grain overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.038;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 220px 220px;
+    }
+
+    /* Animated border angle property */
+    @property --border-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes borderSpin {
+      to { --border-angle: 360deg; }
+    }
+
+    /* Glass cards */
+    .glass-card {
+      position: relative;
+      background: rgba(10, 14, 40, 0.30);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      padding: 2.25rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* FAQ glass variant — zero base padding, label/content handle their own */
+    .faq-glass {
+      padding: 0;
+      margin-bottom: 0.625rem;
+      overflow: hidden;
+    }
+    .faq-glass .faq-label {
+      padding: 1.25rem 1.5rem;
+    }
+    .faq-glass .faq-content {
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+    .faq-glass .faq-toggle:checked + .faq-label + .faq-content {
+      padding-bottom: 1.25rem;
+    }
+    /* Spinning light border — mask-composite punches out the interior
+       so ONLY the 1px border ring shows the gradient, never the fill */
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background: conic-gradient(
+        from var(--border-angle),
+        transparent 15%,
+        rgba(45, 122, 255, 0.45) 43%,
+        rgba(160, 200, 255, 1) 50%,
+        rgba(45, 122, 255, 0.45) 57%,
+        transparent 85%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      pointer-events: none;
+      animation: borderSpin 2.2s linear infinite;
+      transition: opacity 0.35s ease;
+    }
+    .glass-card:hover::before {
+      opacity: 1;
+    }
+    .glass-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(45, 122, 255, 0.15), 0 4px 16px rgba(0, 0, 0, 0.5);
+      border-color: transparent;
+    }
+
+    /* Scroll fade-ins */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.65s ease, transform 0.65s ease, box-shadow 0.3s ease;
+    }
+    /* Allow glass-card hover transform after fade-in completes */
+    .glass-card.is-visible {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* CTA glow pulse */
+    @keyframes glowPulse {
+      0%, 100% { box-shadow: 0 0 14px rgba(45, 122, 255, 0.35); }
+      50%       { box-shadow: 0 0 32px rgba(45, 122, 255, 0.65), 0 0 60px rgba(45, 122, 255, 0.2); }
+    }
+    .cta-glow {
+      animation: glowPulse 2.8s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="text-white font-body min-h-screen">
+
+  <!-- ========== NAV ========== -->
+  <nav id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 h-16 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-2.5">
+        <svg class="h-7 w-auto" viewBox="0 0 920 346.14" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M312.03,173.07c98.64,27.24,120.73,49.32,147.97,147.97,27.24-98.64,49.32-120.73,147.97-147.97-98.64-27.24-120.73-49.32-147.97-147.97-27.24,98.64-49.32,120.73-147.97,147.97ZM481.14,173.07c0,11.67-9.47,21.14-21.14,21.14-11.67,0-21.14-9.47-21.14-21.14s9.47-21.14,21.14-21.14c11.67,0,21.14,9.47,21.14,21.14Z" fill="#2D7AFF"/>
+          <path d="M223.1,173.07c0,68.3,28.89,129.83,75.13,173.07C181.44,316.44,78.38,255.34,0,173.07,78.38,90.8,181.44,29.7,298.23,0c-46.24,43.24-75.13,104.77-75.13,173.07Z" fill="#2D7AFF"/>
+          <path d="M920,173.07c-78.38,82.27-181.44,143.37-298.23,173.07,46.24-43.24,75.13-104.77,75.13-173.07S668.01,43.24,621.77,0c116.78,29.7,219.84,90.8,298.23,173.07Z" fill="#2D7AFF"/>
+        </svg>
+        <span class="font-display font-bold text-blue text-xl tracking-tight">Wraith</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8">
+        <a href="#how-it-works" class="text-sm text-white/50 hover:text-white transition-colors font-body">How It Works</a>
+        <a href="#why-us" class="text-sm text-white/50 hover:text-white transition-colors font-body">Why Us</a>
+        <a href="#faq" class="text-sm text-white/50 hover:text-white transition-colors font-body">FAQ</a>
+        <a href="apply.html" class="bg-blue text-black font-display font-semibold text-sm px-5 py-2 rounded-lg hover:bg-blue/90 transition-colors">Apply Now</a>
+      </div>
+      <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu">
+        <span class="block w-5 h-0.5 bg-white/70"></span>
+        <span class="block w-5 h-0.5 bg-white/70"></span>
+        <span class="block w-5 h-0.5 bg-white/70"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-black/95 backdrop-blur-xl border-t border-white/[0.08]">
+      <div class="px-6 py-6 flex flex-col gap-4">
+        <a href="#how-it-works" class="text-base text-white/60 hover:text-white transition-colors font-body">How It Works</a>
+        <a href="#why-us" class="text-base text-white/60 hover:text-white transition-colors font-body">Why Us</a>
+        <a href="#faq" class="text-base text-white/60 hover:text-white transition-colors font-body">FAQ</a>
+        <a href="apply.html" class="bg-blue text-black font-display font-semibold text-sm px-5 py-3 rounded-lg hover:bg-blue/90 transition-colors text-center mt-2">Apply Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="relative min-h-screen flex items-center justify-center pt-16">
+    <div class="max-w-5xl mx-auto px-6 md:px-10 text-center">
+      <p class="font-display text-blue text-xs uppercase tracking-[0.25em] mb-6 font-medium fade-up is-visible">For AI Founders</p>
+      <h1 class="font-display text-white text-4xl md:text-5xl lg:text-[3.5rem] font-bold tracking-tight leading-[1.15] mb-6 max-w-4xl mx-auto text-balance fade-up is-visible fade-up-delay-1">
+        Turn 3 Hours a Month Into a High-Quality Content Pipeline.
+      </h1>
+      <p class="font-body text-white text-base md:text-lg leading-relaxed max-w-2xl mx-auto mb-10 text-balance fade-up is-visible fade-up-delay-2">
+        We help founders building in AI grow their audience through consistent, founder-led content with strategy, production, and distribution across every platform handled by one team.
+      </p>
+      <a href="apply.html" class="inline-flex items-center justify-center bg-blue text-black font-display font-semibold px-8 py-3.5 rounded-lg hover:bg-blue/90 transition-colors text-base cta-glow fade-up is-visible fade-up-delay-3">
+        Apply for a Call
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== HOW IT WORKS ========== -->
+  <section id="how-it-works" class="py-24 md:py-32 border-t border-white/[0.08]">
+    <div class="max-w-7xl mx-auto px-6 md:px-10">
+      <p class="font-display text-blue text-xs uppercase tracking-[0.2em] text-center mb-4 fade-up">How It Works</p>
+      <h2 class="font-display text-white text-3xl md:text-5xl text-center mb-16 md:mb-20 fade-up fade-up-delay-1">The Five Step Process to Building Your Audience</h2>
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-5">
+        <div class="text-left glass-card fade-up">
+          <p class="font-display text-blue text-4xl md:text-5xl font-bold mb-3">1</p>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Discovery call</h3>
+          <p class="font-body text-white/60 text-sm leading-relaxed">A 30 minute call where we learn your product and audience.</p>
+        </div>
+        <div class="text-left glass-card fade-up fade-up-delay-1">
+          <p class="font-display text-blue text-4xl md:text-5xl font-bold mb-3">2</p>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Onboarding deep-dive</h3>
+          <p class="font-body text-white/60 text-sm leading-relaxed">We do a full product walkthrough, voice sample, competitor research, and start mapping your Month 1 content strategy. Takes about an hour.</p>
+        </div>
+        <div class="text-left glass-card fade-up fade-up-delay-2">
+          <p class="font-display text-blue text-4xl md:text-5xl font-bold mb-3">3</p>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">You record clips</h3>
+          <p class="font-body text-white/60 text-sm leading-relaxed">Twice a month, we send a filming brief with specific clips. Takes you 30 minutes to an hour each time.</p>
+        </div>
+        <div class="text-left glass-card fade-up fade-up-delay-3">
+          <p class="font-display text-blue text-4xl md:text-5xl font-bold mb-3">4</p>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Production and Delivery</h3>
+          <p class="font-body text-white/60 text-sm leading-relaxed">We handle strategy, scripting, editing, captions, scheduling, and posting.</p>
+        </div>
+        <div class="text-left glass-card fade-up fade-up-delay-4">
+          <p class="font-display text-blue text-4xl md:text-5xl font-bold mb-3">5</p>
+          <h3 class="font-display font-semibold text-white text-lg mb-2">Monthly Recap</h3>
+          <p class="font-body text-white/60 text-sm leading-relaxed">A 30-minute call breaking down the last month's performance and strategizing for the next month.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY NOT THE ALTERNATIVES ========== -->
+  <section id="why-us" class="border-t border-white/[0.08]">
+    <div class="max-w-4xl mx-auto px-6 md:px-10 py-24 md:py-32">
+      <p class="font-display text-center text-blue text-xs uppercase tracking-[0.2em] mb-4 fade-up">Why Wraith</p>
+      <h2 class="font-display text-white text-3xl md:text-5xl text-center mb-6 fade-up fade-up-delay-1">Why Not the Alternatives</h2>
+      <p class="font-body text-white/60 text-lg leading-relaxed text-center max-w-3xl mx-auto fade-up fade-up-delay-2">Most AI founders weigh four options: hire a marketer ($80K+ salary, 3 months to ramp), bring on a fractional CMO ($5K to $18K/mo for strategy without execution), use a generic agency (template content your technical audience ignores), or keep doing it themselves (8 posts over 3 months, then quit). Wraith exists because none of those work at your stage.</p>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section id="faq" class="py-24 md:py-32 px-6 md:px-10 border-t border-white/[0.08]">
+      <h2 class="font-display text-white text-3xl md:text-5xl text-center mb-12 md:mb-16 fade-up">Common Questions</h2>
+    <div class="max-w-3xl mx-auto flex flex-col">
+      <div class="glass-card faq-glass fade-up">
+        <input type="checkbox" id="faq-toggle-1" class="faq-toggle">
+        <label for="faq-toggle-1" class="faq-label flex items-center justify-between gap-4 cursor-pointer">
+          <span class="font-display font-medium text-white text-base md:text-lg">Nobody can explain my product as well as I can.</span>
+          <svg class="faq-chevron w-5 h-5 text-blue flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </label>
+        <div class="faq-content">
+          <p class="font-body text-white/60 leading-relaxed text-base">You're right, and that's exactly why we don't replace you. We build around you. Your face, your voice, and your ideas are the content. All you need to do is show up for 3 hours a month.</p>
+        </div>
+      </div>
+      <div class="glass-card faq-glass fade-up fade-up-delay-1">
+        <input type="checkbox" id="faq-toggle-2" class="faq-toggle">
+        <label for="faq-toggle-2" class="faq-label flex items-center justify-between gap-4 cursor-pointer">
+          <span class="font-display font-medium text-white text-base md:text-lg">Won't AI-generated content feel inauthentic to my audience?</span>
+          <svg class="faq-chevron w-5 h-5 text-blue flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </label>
+        <div class="faq-content">
+          <p class="font-body text-white/60 leading-relaxed text-base">83% of consumers can spot pure AI video, and 36% say it lowers trust. We know. That's why Wraith produces founder-led, human content. AI accelerates production (editing, visuals, scheduling) but the content itself is you. That's what cuts through.</p>
+        </div>
+      </div>
+      <div class="glass-card faq-glass fade-up fade-up-delay-2">
+        <input type="checkbox" id="faq-toggle-3" class="faq-toggle">
+        <label for="faq-toggle-3" class="faq-label flex items-center justify-between gap-4 cursor-pointer">
+          <span class="font-display font-medium text-white text-base md:text-lg">I tried posting for a while and it didn't work.</span>
+          <svg class="faq-chevron w-5 h-5 text-blue flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </label>
+        <div class="faq-content">
+          <p class="font-body text-white/60 leading-relaxed text-base">Most founders record a few clips with no scripting, no hooks, and no strategy, then conclude content doesn't work for them. The problem wasn't that you posted. It's that nothing was optimized. Strategy and quality are the difference between content that performs and content that sits there.</p>
+        </div>
+      </div>
+      <div class="glass-card faq-glass fade-up fade-up-delay-3">
+        <input type="checkbox" id="faq-toggle-4" class="faq-toggle">
+        <label for="faq-toggle-4" class="faq-label flex items-center justify-between gap-4 cursor-pointer">
+          <span class="font-display font-medium text-white text-base md:text-lg">Content agencies don't understand technical products.</span>
+          <svg class="faq-chevron w-5 h-5 text-blue flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </label>
+        <div class="faq-content">
+          <p class="font-body text-white/60 leading-relaxed text-base">Most don't. That's the whole reason Wraith exists. We only work with founders building in AI. We know what RAG is. We know what inference costs are. We know your users are developers. And we know how to make content that doesn't embarrass you in front of them.</p>
+        </div>
+      </div>
+      <div class="glass-card faq-glass fade-up fade-up-delay-4">
+        <input type="checkbox" id="faq-toggle-5" class="faq-toggle">
+        <label for="faq-toggle-5" class="faq-label flex items-center justify-between gap-4 cursor-pointer">
+          <span class="font-display font-medium text-white text-base md:text-lg">$2,000/month is a lot when we're burning cash.</span>
+          <svg class="faq-chevron w-5 h-5 text-blue flex-shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+        </label>
+        <div class="faq-content">
+          <p class="font-body text-white/60 leading-relaxed text-base">Relative to what? A full-time marketer costs $80K to $120K+ plus 3 months to ramp. A fractional CMO costs $5K to $18K/month. Paid ads at the same spend generate temporary traffic with zero compounding. At $2,000/month you get 20 videos that compound in value every single month. That's $100 per video for a full content operation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FINAL CTA ========== -->
+  <section id="cta" class="border-t border-white/[0.08]">
+    <div class="max-w-3xl mx-auto px-6 md:px-10 py-24 md:py-32 text-center">
+      <h2 class="font-display text-white text-3xl md:text-5xl mb-5 fade-up text-balance max-w-2xl mx-auto">Your Competitors Shipped Content This Week.</h2>
+      <p class="font-body text-white/60 text-base md:text-lg mb-10 max-w-lg mx-auto fade-up fade-up-delay-1 text-balance">Every week without a content pipeline is another week your product stays invisible while worse products grow faster. The application takes 2 minutes. The call takes 30.</p>
+      <a href="apply.html" class="inline-flex items-center justify-center bg-blue text-black font-display font-semibold px-8 py-3.5 rounded-lg hover:bg-blue/90 transition-colors cta-glow fade-up fade-up-delay-2">Apply for a Call</a>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="border-t border-white/[0.08]">
+    <div class="max-w-7xl mx-auto px-6 md:px-10 py-8">
+      <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
+        <div class="flex items-center gap-2.5">
+          <svg class="h-6 w-auto" viewBox="0 0 920 346.14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M312.03,173.07c98.64,27.24,120.73,49.32,147.97,147.97,27.24-98.64,49.32-120.73,147.97-147.97-98.64-27.24-120.73-49.32-147.97-147.97-27.24,98.64-49.32,120.73-147.97,147.97ZM481.14,173.07c0,11.67-9.47,21.14-21.14,21.14-11.67,0-21.14-9.47-21.14-21.14s9.47-21.14,21.14-21.14c11.67,0,21.14,9.47,21.14,21.14Z" fill="#2D7AFF"/>
+            <path d="M223.1,173.07c0,68.3,28.89,129.83,75.13,173.07C181.44,316.44,78.38,255.34,0,173.07,78.38,90.8,181.44,29.7,298.23,0c-46.24,43.24-75.13,104.77-75.13,173.07Z" fill="#2D7AFF"/>
+            <path d="M920,173.07c-78.38,82.27-181.44,143.37-298.23,173.07,46.24-43.24,75.13-104.77,75.13-173.07S668.01,43.24,621.77,0c116.78,29.7,219.84,90.8,298.23,173.07Z" fill="#2D7AFF"/>
+          </svg>
+          <span class="font-display font-bold text-blue text-lg tracking-tight">Wraith</span>
+        </div>
+        <div class="flex items-center gap-8">
+          <a href="#how-it-works" class="text-sm text-white/50 hover:text-white transition-colors">How It Works</a>
+          <a href="#why-us" class="text-sm text-white/50 hover:text-white transition-colors">Why Us</a>
+          <a href="#faq" class="text-sm text-white/50 hover:text-white transition-colors">FAQ</a>
+          <a href="apply.html" class="text-sm text-white/50 hover:text-white transition-colors font-medium">Apply</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var nav = document.getElementById('nav');
+      var btn = document.getElementById('mobile-menu-btn');
+      var menu = document.getElementById('mobile-menu');
+      var scrolled = false;
+
+      window.addEventListener('scroll', function() {
+        var now = window.scrollY > 20;
+        if (now !== scrolled) {
+          scrolled = now;
+          nav.classList.toggle('bg-black/40', scrolled);
+          nav.classList.toggle('backdrop-blur-2xl', scrolled);
+          nav.classList.toggle('border-b', scrolled);
+          nav.classList.toggle('border-white/[0.06]', scrolled);
+        }
+      });
+
+      btn.addEventListener('click', function() {
+        menu.classList.toggle('hidden');
+      });
+
+      menu.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function() {
+          menu.classList.add('hidden');
+        });
+      });
+    })();
+
+    (function() {
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      document.querySelectorAll('.fade-up:not(.is-visible)').forEach(function(el) {
+        observer.observe(el);
+      });
+    })();
+  </script>
+</body>
+</html>
